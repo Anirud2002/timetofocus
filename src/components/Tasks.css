@@ -1,0 +1,65 @@
+.tasks {
+  width: 70%;
+  margin: -20px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+.tasks p {
+  font-weight: 550;
+}
+.task-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 2px solid white;
+}
+
+.task-header button {
+  padding: 7px 15px;
+  color: white;
+  border: none;
+  font-size: 1.3rem;
+  background: rgba(253, 253, 253, 0.1);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.task-header h2 {
+  font-size: 1.2rem;
+}
+
+.add-task {
+  width: 100%;
+  margin-top: 20px;
+  background: rgba(51, 51, 51, 0.282);
+  border-radius: 10px;
+  padding: 20px 0px;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 650px) {
+  .tasks {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .tasks {
+    width: 60%;
+  }
+}
+@media screen and (min-width: 900px) {
+  .tasks {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .tasks {
+    width: 35%;
+  }
+}
