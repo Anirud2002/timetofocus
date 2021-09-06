@@ -5,6 +5,7 @@ const app = express()
 const session = require('express-session')
 const passport = require('passport')
 const flash = require('connect-flash')
+const path = require('path')
 
 const port = process.env.PORT || 5000
 
@@ -48,6 +49,16 @@ app.use((req, res, next) => {
 
 // routes
 app.use("/users", require("./routes/users"))
+
+// serve the static assests if in production
+if(process.env.NODE_ENV === 'production'){
+    // set a static folder
+    app.use(express.static('../build'))
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 
 app.listen(port, () => {
