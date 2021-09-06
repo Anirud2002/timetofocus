@@ -7,6 +7,10 @@ function Tasks() {
     const [isTaskTabOpen, setIsTaskTabOpen] = useState(false)
     const [taskValue, setTaskValue] = useState("")
     const [tasks, setTasks] = useState([])
+
+    useEffect(() => {
+        getTasks()
+    }, [])
     
     const changeTask = () => {
         setTaskValue(inputRef.current.value)
@@ -35,10 +39,6 @@ function Tasks() {
         
     }
 
-    useEffect(() => {
-        getTasks()
-    }, [])
-
 
     return (
         <div className="tasks">
@@ -63,7 +63,7 @@ function Tasks() {
                 </form>
             ): (
                 <div className="add-task" onClick={() => setIsTaskTabOpen(true)}>
-                    <i class="fas fa-plus-circle"></i> Add Task
+                    <i className="fas fa-plus-circle"></i> Add Task
                 </div>
 
             )}

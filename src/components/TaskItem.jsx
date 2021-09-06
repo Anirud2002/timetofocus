@@ -11,7 +11,6 @@ function TaskItem(props) {
         const newTasks = tasks.filter(task => task !== text)
         localStorage.setItem('tasks', JSON.stringify(newTasks))
         setTasks(newTasks)
-
     }
 
     const completeCheck = e => {

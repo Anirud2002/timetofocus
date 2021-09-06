@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import "./css/Login.css"
 import {Link, useHistory} from "react-router-dom"
 import axios from 'axios'
-import { ErrorOutlineSharp } from '@material-ui/icons'
 
 function Register() {
     let history = useHistory()
@@ -35,7 +34,7 @@ function Register() {
         if(!username || !email || !password || !password2){
             errors.push({msg: "Please fill out all the fields!"})
         }
-        if(password != password2){
+        if(password !== password2){
             errors.push({msg: "Your password didn't match!"})
         }
         if(password.split('').length < 8){

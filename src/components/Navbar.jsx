@@ -14,15 +14,15 @@ function Navbar(props) {
             </div>
             <ul className="links">
                 <li>
-                    <button onClick={() => handleSettings()}><i class="fas fa-cog"></i> Setting</button>
+                    <button onClick={() => handleSettings()}><i className="fas fa-cog"></i> Setting</button>
                 </li>
                 {!isLogged ? (
                     <li>
-                        <Link to="/users/login"><button><i class="fas fa-cog"></i> Login</button></Link>
+                        <Link to="/users/login"><button><i className="fas fa-cog"></i> Login</button></Link>
                     </li>
                 ): (
                     <li>
-                        <button onClick={handleLogout}><i class="fas fa-sign-out-alt"></i> Logout</button>
+                        <button onClick={handleLogout}><i className="fas fa-sign-out-alt"></i> Logout</button>
                     </li>
                 )}
             </ul>

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import { useTimer } from 'react-timer-hook';
 import clickSound from '../ringtones/click-sound.mp3'
 
 function LongBreak(props) {

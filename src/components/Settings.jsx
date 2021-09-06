@@ -7,8 +7,7 @@ import birdSound from "../ringtones/bird.mp3"
 import hornSound from "../ringtones/horn.mp3"
 
 function Settings(props) {
-    const { handleSettings, typesTimer, setTypesTimer, setCurrentTone, autoStart, setAutoStart } = props
-    const [activeSoundIndex, setActiveSoundIndex] = useState(0)
+    const { handleSettings, typesTimer, setTypesTimer, setCurrentTone } = props
     const [soundOptions, setSoundOptions] = useState(false)
     let [currentSound, setCurrentSound] = useState("Alarm")
     const { pomodoro, shortBreak, longBreak } = typesTimer
