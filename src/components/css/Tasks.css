@@ -1,0 +1,138 @@
+.tasks {
+  width: 80%;
+  margin: 20px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+.tasks p {
+  font-weight: 550;
+}
+.task-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 2px solid white;
+  position: relative;
+}
+
+.task-header h2 {
+  font-size: 1.2rem;
+}
+
+.add-task {
+  width: 100%;
+  margin-top: 20px;
+  background: rgba(51, 51, 51, 0.282);
+  border-radius: 10px;
+  padding: 20px 0px;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+.working-on {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+  background: white;
+}
+
+.task-input {
+  margin: 20px 10px;
+  display: flex;
+  justify-content: left;
+}
+.task-input input {
+  font-size: 1.2rem;
+  outline: none;
+  border: none;
+  font-weight: 540;
+}
+
+.task-footer {
+  padding: 20px 10px;
+  background: rgb(211, 211, 211);
+  display: flex;
+  align-items: center;
+  border-radius: 0px 0px 10px 10px;
+}
+.task-footer button {
+  font-weight: 550;
+  border: none;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+.cancel-btn {
+  color: rgb(99, 99, 99);
+  background: none;
+  margin-right: 10px;
+}
+.save-btn {
+  background: rgb(99, 99, 99);
+  color: white;
+  border-radius: 5px;
+}
+.task-main {
+  width: 100%;
+}
+.task-div {
+  display: flex;
+  background: white;
+  width: 100%;
+  padding: 10px 10px;
+  border-left: 5px solid black;
+  border-radius: 5px;
+  margin: 10px 0px;
+  align-items: center;
+  transition: 0.3s ease all;
+  justify-content: space-between;
+}
+.task-div.completed {
+  text-decoration: line-through;
+  opacity: 0.3;
+}
+.comp-task {
+  display: flex;
+  align-items: center;
+}
+.comp-task p {
+  color: black;
+  font-weight: 650;
+  margin-left: 20px;
+}
+
+.completed-btn,
+.trash-btn {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.MuiSvgIcon-root {
+  font-size: 2rem !important;
+}
+
+@media screen and (min-width: 650px) {
+  .tasks {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .tasks {
+    width: 60%;
+  }
+}
+@media screen and (min-width: 900px) {
+  .tasks {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .tasks {
+    width: 35%;
+  }
+}

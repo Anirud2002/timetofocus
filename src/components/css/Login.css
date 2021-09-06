@@ -1,0 +1,120 @@
+.login,
+.register {
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login .logo,
+.register .logo {
+  color: white;
+  margin-bottom: 20px;
+}
+
+form {
+  width: 90%;
+  background: rgb(240, 240, 240);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-group input {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.login-btn {
+  border: none;
+  outline: none;
+  padding: 7px 10px;
+  background-color: rgb(80, 80, 80);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+a {
+  color: rgb(80, 80, 80);
+  text-decoration: none;
+  margin-left: 10px;
+  font-size: 0.8rem;
+}
+
+a span {
+  color: red;
+  font-weight: 600;
+}
+
+.back-to-home {
+  color: white;
+  margin-top: 20px;
+  font-weight: 570;
+  font-size: 1rem;
+}
+
+.err-div {
+  font-size: 0.8rem;
+  border: 1px solid red;
+  background: rgba(255, 0, 0, 0.2);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 7px;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 500px) {
+  form {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 600px) {
+  form {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  form {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  form {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  form {
+    width: 35%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  form {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  form {
+    width: 25%;
+  }
+}

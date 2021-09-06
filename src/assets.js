@@ -1,5 +1,5 @@
 export const sounds = [
-    "Kitchen",
+    "Alarm",
     "Bell",
     "Horn",
     "Bird"

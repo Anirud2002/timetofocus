@@ -1,0 +1,161 @@
+import React, { useEffect } from 'react'
+import { useState } from 'react'
+import "./Timer.css"
+
+function Timer(props) {
+    const {typesTimer} = props
+    const {pomodoro, shortBreak, longBreak} = typesTimer
+    let [minutes, setMinutes] = useState(pomodoro)
+    let [seconds, setSeconds] = useState(0)
+    let [isPause, setIsPause] = useState(true)
+    let [timerStarted, setTimerStarted] = useState(false)
+    const [pomodoroTimer, setPomodoroTimer] = useState(true)
+    const [shortBreakTimer, setShortBreakTimer] = useState(false)
+    const [longBreakTimer, setLongBreakTimer] = useState(false)
+    const [type, setType] = useState("Pomodoro")
+    var timer;
+
+    useEffect(()=> {
+        if(type === "Pomodoro"){
+            setMinutes(pomodoro)
+            setPomodoroTimer(true)
+        }
+        if(type === "SB"){
+            setMinutes(shortBreak)
+        }
+        if(type === "LB"){
+            setMinutes(longBreak)
+        }
+    }, [typesTimer, type])
+    
+
+    function startTimer(sec) {
+        timerStarted = true
+        setTimerStarted(timerStarted)
+        isPause = !isPause
+        setIsPause(isPause)
+        var obj, min, startTime, s;
+        s = 1
+        startTime = new Date().getTime()
+        min = Math.floor(sec / 60)
+        if(min > 0){
+            console.log("k cha")
+            min--
+        }
+        setSeconds(59)
+        setMinutes(min)
+        obj = {};
+        
+        obj.resume = function() {
+            startTime = new Date().getTime();
+            timer = setInterval(obj.step, 1000); // adjust this number to affect granularity
+                            // lower numbers are more accurate, but more CPU-expensive
+        };
+
+        obj.pause = function() {
+            clearInterval(timer);
+            return
+        };
+
+        obj.step = function() {
+            let ss = 59 - s
+            s++
+            if(min === 0 && ss === 0){
+                console.log("k cha kta kti ho")
+                setIsPause(true)
+                clearInterval(timer)
+                return
+            }
+            if(ss === 0){
+                s = 0
+                console.log("seconds zero bhayo")
+                min--
+                setMinutes(min)
+            }
+            setSeconds(ss)
+        };
+        obj.resume();
+    return obj;
+}
+
+    useEffect(() => {
+        const buttons = document.querySelectorAll(".timer-types button")
+        buttons.forEach(button => {
+            button.addEventListener("click", (e) => {
+                console.log(timerStarted)
+                if(timerStarted){
+                    const res = window.confirm("are you ready")
+                    if(res){
+                        timerStarted = false
+                        setTimerStarted(timerStarted)
+                        isPause = true
+                        setIsPause(isPause)
+                        clearInterval(timer)
+                    }
+                }
+                buttons.forEach(btn => {
+                    btn.classList.remove('active')
+                })
+                e.target.classList.add("active")
+                const type = e.target.innerHTML
+                const app = document.querySelector('.app')
+                if(type === "Pomodoro"){
+                    app.className = "app Pomodoro"
+                    setMinutes(pomodoro)
+                    setType("Pomodoro")
+                }
+                if(type === "Short Break"){
+                    app.className = "app SB"
+                    setMinutes(shortBreak)
+                    setType("SB")
+
+                }
+                if(type === "Long Break"){
+                    app.className = "app LB"
+                    setMinutes(longBreak)
+                    setType("LB")
+                }   
+            })
+        })
+    }, [])
+
+    const pauseTimer = () => {
+        clearInterval(timer)
+        setIsPause(true)
+    }
+
+
+
+
+ 
+    return (
+        <div className='timer'>
+            <div className="timer-types">
+                <button className="active">Pomodoro</button>
+                <button>Short Break</button>
+                <button>Long Break</button>
+            </div>
+            {timerStarted ? (
+                <h1 className="clock-h1">{minutes < 10? 0: null}{minutes}:{seconds < 10? 0: null}{seconds}</h1>
+                
+            ) : (
+                <h1 className="clock-h1">{
+                    type==="Pomodoro" && `${pomodoro}:00`
+                }
+                {
+                    type==="SB" && `${shortBreak}:00`
+                }
+                {
+                    type==="LB" && `${longBreak}:00`
+                }</h1>
+            )}
+            {!isPause ? (
+                <button className="pause" onClick={() => pauseTimer()}>PAUSE</button>
+            ) : (
+                <button className="start" onClick={() => startTimer(minutes*60)}>START</button>
+            )}
+        </div>
+    )
+}
+
+export default Timer
