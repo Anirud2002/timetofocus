@@ -55,7 +55,7 @@ function Register() {
                         setErrors([])
                     }, 2000)
                 }else{
-                    history.push('/users/login')
+                    history.push('https://time-to-focus.netlify.app/users/login')
                 }
             })
         }
