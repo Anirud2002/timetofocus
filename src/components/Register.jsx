@@ -49,13 +49,14 @@ function Register() {
         else{
             axios.post("https://time-to-focus-heroku.herokuapp.com/users/register", user)
             .then(res => {
-                if(res.data.error){
+                console.log(res)
+                if(res.data.error === true){
                     setErrors([{msg: res.data.msg}])
                     setTimeout(() => {
                         setErrors([])
                     }, 2000)
                 }else{
-                    history.push('https://time-to-focus.netlify.app/users/login')
+                    history.push('/users/login')
                 }
             })
         }
