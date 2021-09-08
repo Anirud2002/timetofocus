@@ -35,7 +35,7 @@ function App() {
   }, [typesTimer])
 
   const handleLogout = () => {
-    axios.get('/users/logout')
+    axios.get('https://time-to-focus-heroku.herokuapp.com/users/logout')
     .then(res => {
       if(res.data.isLoggedOut){
         setIsLogged(false)

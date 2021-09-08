@@ -34,7 +34,7 @@ function Login(props) {
             setErrors(errors)
         }
         else{
-            axios.post('/users/login', user)
+            axios.post('https://time-to-focus-heroku.herokuapp.com/users/login', user)
             .then(res => {
                 if(res.data.authenticated){
                     setIsLogged(true)

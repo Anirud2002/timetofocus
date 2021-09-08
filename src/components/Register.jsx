@@ -47,7 +47,7 @@ function Register() {
             }, 3000)
         }
         else{
-            axios.post("/users/register", user)
+            axios.post("https://time-to-focus-heroku.herokuapp.com/users/register", user)
             .then(res => {
                 if(res.data.error){
                     setErrors([{msg: res.data.msg}])
