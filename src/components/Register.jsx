@@ -47,7 +47,7 @@ function Register() {
             }, 3000)
         }
         else{
-            axios.post("https://time-to-focus-heroku.herokuapp.com/users/register", user)
+            axios.post("/users/register", user)
             .then(res => {
                 if(res.data.error){
                     setErrors([{msg: res.data.msg}])
@@ -92,7 +92,7 @@ function Register() {
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Confirm Password</label>
-                    <input onChange={onChangePassword2} value={user.password2} type="password" id="password2" name="password" class="form-control" placeholder="Re-enter your password" />
+                    <input onChange={onChangePassword2} value={user.password2} type="password" id="password2" name="password2" class="form-control" placeholder="Re-enter your password" />
                 </div>
                 <button className="login-btn" type="submit">Register</button>
                 <Link to="/users/login">Already have an account? <span>Login</span></Link>

@@ -27,13 +27,15 @@ function App() {
   })
   const [type, setType] = useState("Pomodoro")
   const [currentTone, setCurrentTone] = useState("Alarm")
+
+  const {pomodoro, shortBreak, longBreak} = typesTimer
   
   useEffect(() => {
     setTimerStarted(false)
   }, [typesTimer])
 
   const handleLogout = () => {
-    axios.get('https://time-to-focus-heroku.herokuapp.com/users/logout')
+    axios.get('/users/logout')
     .then(res => {
       if(res.data.isLoggedOut){
         setIsLogged(false)
@@ -64,6 +66,10 @@ function App() {
   }
 
   const handleSettings = () => {
+    if(pomodoro === 0 || shortBreak === 0 || longBreak === 0){
+      alert('One of the timer is set to 0')
+      return
+    }
     if(timerStarted){
       if(window.confirm('Do you want exit the current session?')){
         isSettingsOpen(!settingsOpen)
@@ -74,9 +80,9 @@ function App() {
         })
         setTimerStarted(false)
       }
-  }else{
-    isSettingsOpen(!settingsOpen)
-  }
+    }else{
+      isSettingsOpen(!settingsOpen)
+    }
 }
 
   return (
