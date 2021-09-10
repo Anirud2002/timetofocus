@@ -34,12 +34,15 @@
 }
 
 footer {
+  width: 100%;
   position: absolute;
   bottom: 10px;
-  left: 50%;
   font-weight: 600;
   color: white;
-  transform: translateX(-50%);
+}
+
+footer p {
+  text-align: center;
 }
 
 @media screen and (max-width: 500px) {
