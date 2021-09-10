@@ -37,11 +37,13 @@ function Login(props) {
             setErrors(errors)
         }
         else{
+            setIsLoading(true)
             axios.post('https://time-to-focus-heroku.herokuapp.com/users/login', user)
             .then(res => {
                 if(res.data.authenticated){
                     setIsLogged(true)
                     setLoggedUser({username: res.data.user.username})
+                    setIsLoading(false)
                     history.push('/')
                 }
                 if(res.data.error){
@@ -49,16 +51,11 @@ function Login(props) {
                     setTimeout(() => {
                         setErrors([])
                     }, 2000)
+                    setIsLoading(false)
                 }
                 
             })
 
-        }
-        if(errors.length > 0){
-            setErrors(errors)
-            setTimeout(() => {
-                setErrors([])
-            }, 3000)
         }
     }
 
