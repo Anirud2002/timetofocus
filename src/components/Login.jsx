@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import "./css/Login.css"
 import {Link, useHistory} from 'react-router-dom'
+import Spinner from 'react-spinkit'
 import axios from 'axios'
 
 
@@ -15,6 +16,8 @@ function Login(props) {
 
     const {email, password} = user
     const [errors, setErrors] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+
 
     const onChangeEmail = e => {
         setUser({...user, email: e.target.value})
@@ -65,24 +68,32 @@ function Login(props) {
                 <i class="fas fa-hourglass-half logo-icon"></i>
                 <h1>TimeToFocus</h1>
             </div>
-            <form onSubmit={handleSubmit} className="login-form">
-                {errors.map(err => {
-                    return <div key={err.msg} className='err-div'>
-                        <p>{err.msg}</p>
-                    </div>
-                })}
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input onChange={onChangeEmail} value={email} type="email" id="email" name="email" class="form-control" placeholder="Enter Email" />
+            {isLoading ? (
+                <div className="loading">
+                    <Spinner name="cube-grid" />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input onChange={onChangePassword} value={password} type="password" id="password" name="password" class="form-control" placeholder="Enter Password" />
-                </div>
-                <button className="login-btn" type="submit">Login</button>
-                <Link to="/users/register">Don't have an account? <span>Register</span></Link>
-            </form>
-            <Link className="back-to-home" to="/">Back to home</Link>
+            ) : (
+                <>
+                    <form onSubmit={handleSubmit} className="login-form">
+                        {errors.map(err => {
+                            return <div key={err.msg} className='err-div'>
+                                <p>{err.msg}</p>
+                            </div>
+                        })}
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input onChange={onChangeEmail} value={email} type="email" id="email" name="email" class="form-control" placeholder="Enter Email" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input onChange={onChangePassword} value={password} type="password" id="password" name="password" class="form-control" placeholder="Enter Password" />
+                        </div>
+                        <button className="login-btn" type="submit">Login</button>
+                        <Link to="/users/register">Don't have an account? <span>Register</span></Link>
+                    </form>
+                    <Link className="back-to-home" to="/">Back to home</Link>
+                </>
+            )}
         </div>
     )
 }

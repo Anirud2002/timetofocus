@@ -77,6 +77,9 @@ a span {
   padding: 5px 7px;
   margin-bottom: 10px;
 }
+.sk-spinner {
+  color: white !important;
+}
 
 @media screen and (min-width: 500px) {
   form {

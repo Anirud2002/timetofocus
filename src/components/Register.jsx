@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import "./css/Login.css"
 import {Link, useHistory} from "react-router-dom"
+import Spinner from 'react-spinkit'
 import axios from 'axios'
 
 function Register() {
@@ -12,6 +13,7 @@ function Register() {
         password2: ''
     })
     const [errors, setErrors] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     const {username, email, password, password2} = user
 
@@ -47,6 +49,7 @@ function Register() {
             }, 3000)
         }
         else{
+            setIsLoading(true)
             axios.post("https://time-to-focus-heroku.herokuapp.com/users/register", user)
             .then(res => {
                 console.log(res)
@@ -55,7 +58,9 @@ function Register() {
                     setTimeout(() => {
                         setErrors([])
                     }, 2000)
+                    setIsLoading(false)
                 }else{
+                    setIsLoading(false)
                     history.push('/users/login')
                 }
             })
@@ -73,32 +78,40 @@ function Register() {
                 <i class="fas fa-hourglass-half logo-icon"></i>
                 <h1>TimeToFocus</h1>
             </div>
-            <form className="login-form" onSubmit={onSubmit}>
-                {errors.map(err => {
-                    return <div key={err.msg} className='err-div'>
-                        <p>{err.msg}</p>
-                    </div>
-                })}
-                <div className="form-group">
-                    <label htmlFor="name">Username</label>
-                    <input onChange={onChangeUsername} value={user.username} type="name" id="name" name="name" class="form-control" placeholder="Enter an Username" />
+            {isLoading ? (
+                <div className="loading">
+                    <Spinner name="cube-grid" />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input onChange={onChangeEmail} value={user.email} type="email" id="email" name="email" class="form-control" placeholder="Enter Email" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input onChange={onChangePassword} value={user.password} type="password" id="password" name="password" class="form-control" placeholder="Enter Password" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Confirm Password</label>
-                    <input onChange={onChangePassword2} value={user.password2} type="password" id="password2" name="password2" class="form-control" placeholder="Re-enter your password" />
-                </div>
-                <button className="login-btn" type="submit">Register</button>
-                <Link to="/users/login">Already have an account? <span>Login</span></Link>
-            </form>
-            <Link className="back-to-home" to="/">Back to home</Link>
+            ) : (
+                <>
+                    <form className="login-form" onSubmit={onSubmit}>
+                        {errors.map(err => {
+                            return <div key={err.msg} className='err-div'>
+                                <p>{err.msg}</p>
+                            </div>
+                        })}
+                        <div className="form-group">
+                            <label htmlFor="name">Username</label>
+                            <input onChange={onChangeUsername} value={user.username} type="name" id="name" name="name" class="form-control" placeholder="Enter an Username" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input onChange={onChangeEmail} value={user.email} type="email" id="email" name="email" class="form-control" placeholder="Enter Email" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input onChange={onChangePassword} value={user.password} type="password" id="password" name="password" class="form-control" placeholder="Enter Password" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Confirm Password</label>
+                            <input onChange={onChangePassword2} value={user.password2} type="password" id="password2" name="password2" class="form-control" placeholder="Re-enter your password" />
+                        </div>
+                        <button className="login-btn" type="submit">Register</button>
+                        <Link to="/users/login">Already have an account? <span>Login</span></Link>
+                    </form>
+                    <Link className="back-to-home" to="/">Back to home</Link>
+                </>
+            )}
         </div>
     )
 }
