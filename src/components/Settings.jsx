@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import "./css/Settings.css"
 import { sounds } from "../assets"
-import alarmSound from "../ringtones/alarm-clock.mp3"
+import alarmSound from "../ringtones/alarm.mp3"
 import bellSound from "../ringtones/bell.mp3"
 import birdSound from "../ringtones/bird.mp3"
 import hornSound from "../ringtones/horn.mp3"
 
 function Settings(props) {
-    const { handleSettings, typesTimer, setTypesTimer, setCurrentTone } = props
+    const { handleSettings, typesTimer, setTypesTimer, setCurrentTone} = props
     const [soundOptions, setSoundOptions] = useState(false)
+    let [isRingtonePlaying, setIsRingtonePlaying] = useState(false)
     let [currentSound, setCurrentSound] = useState("Alarm")
     const { pomodoro, shortBreak, longBreak } = typesTimer
 
@@ -17,6 +18,16 @@ function Settings(props) {
         const tones = document.querySelectorAll(".sounds")
         tones.forEach((tone, index) => {
             tone.addEventListener("click", () => {
+                if(isRingtonePlaying){
+                    return
+                }
+                isRingtonePlaying = true
+                setIsRingtonePlaying(isRingtonePlaying)
+                console.log(isRingtonePlaying)
+                setTimeout(() => {
+                    isRingtonePlaying = false
+                    setIsRingtonePlaying(isRingtonePlaying)
+                }, 5000)
                 currentSound = sounds[index]
                 setCurrentSound(currentSound)
                 setCurrentTone(currentSound)

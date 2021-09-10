@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar"
 import Timer from "./components/Timer"
 import Tasks from "./components/Tasks"
 import Settings from "./components/Settings"
-import alarmSound from "./ringtones/alarm-clock.mp3"
+import alarmSound from "./ringtones/alarm.mp3"
 import bellSound from "./ringtones/bell.mp3"
 import birdSound from "./ringtones/bird.mp3"
 import hornSound from "./ringtones/horn.mp3"
@@ -46,23 +46,28 @@ function App() {
     })
   }
 
+  useEffect(() =>{
+    console.log(currentTone)
+  }, [currentTone])
+
   const playRingtone = () => {
-      if(currentTone === "Alarm"){
-            let playRingtone = new Audio(alarmSound)
-            playRingtone.play()
-        }
-      if(currentTone === "Bird"){
-          let playRingtone = new Audio(birdSound)
-          playRingtone.play()
+    if(currentTone === "Alarm"){
+          let ringtone = new Audio(alarmSound)
+          ringtone.play()
       }
-      if(currentTone === "Horn"){
-          let playRingtone = new Audio(hornSound)
-          playRingtone.play()
-      }
-      if(currentTone === "Bell"){
-          let playRingtone = new Audio(bellSound)
-          playRingtone.play()
-      }
+    if(currentTone === "Bird"){
+        let ringtone = new Audio(birdSound)
+        ringtone.play()
+    }
+    if(currentTone === "Horn"){
+        let ringtone = new Audio(hornSound)
+        ringtone.play()
+    }
+    if(currentTone === "Bell"){
+        let ringtone = new Audio(bellSound)
+        ringtone.play()
+    }
+  
   }
 
   const handleSettings = () => {
@@ -108,7 +113,7 @@ function App() {
               )}
               <Timer timerStarted={timerStarted} setTimerStarted={setTimerStarted} typesTimer={typesTimer} playRingtone={playRingtone} currentTone={currentTone} setType={setType} type={type}/>
               <Tasks/>
-              {settingsOpen && <Settings handleSettings={handleSettings} typesTimer={typesTimer} setTypesTimer={setTypesTimer} setCurrentTone={setCurrentTone}/>}
+              {settingsOpen && <Settings playRingtone={playRingtone} handleSettings={handleSettings} typesTimer={typesTimer} setTypesTimer={setTypesTimer} setCurrentTone={setCurrentTone}/>}
             </Route>
           </Switch>
           <footer>
